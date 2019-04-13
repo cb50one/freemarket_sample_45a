@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_110116) do
+ActiveRecord::Schema.define(version: 2019_04_09_131928) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "zip_code", null: false
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 2019_03_20_110116) do
     t.index ["user_id"], name: "index_sns_credentials_on_user_id"
   end
 
+  create_table "tradecomments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "comment", null: false
+    t.bigint "trade_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trade_id"], name: "index_tradecomments_on_trade_id"
+    t.index ["user_id"], name: "index_tradecomments_on_user_id"
+  end
+
   create_table "trades", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "item_id"
     t.string "status", null: false
@@ -115,4 +125,6 @@ ActiveRecord::Schema.define(version: 2019_03_20_110116) do
   add_foreign_key "item_categories", "items"
   add_foreign_key "itemimages", "items"
   add_foreign_key "sns_credentials", "users"
+  add_foreign_key "tradecomments", "trades"
+  add_foreign_key "tradecomments", "users"
 end

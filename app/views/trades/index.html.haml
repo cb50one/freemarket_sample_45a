@@ -1,0 +1,49 @@
+= render partial: "layouts/main-header"
+
+%main.trade-container
+  .responsibe-bar
+    %sention.trade-container__content
+      %h3 取引情報
+      %dl.trade-container__content_list
+        %dt 商品
+        %dd #{@item.name}
+        %dt 送料
+        %dd #{@item.shipping_charge}
+        %dt 購入日時
+        %dd #{@trade.created_at}
+        %dt 商品ID
+        %dd #{@item.id}
+        %dt お届け先
+        %dd
+
+    %sention.trade-container__content
+      %h3 出品者情報
+      / = @seller.icon
+      = @seller.nickname
+  %sention.trade-container__content
+    %h2 取引画面
+    .trade-container__message
+    .trade-container__message
+    .trade-container__message
+      = form_for @tradecomment, url: item_trades_path do |f|
+        = f.text_field :comment
+        = f.submit "取引メッセージを送る"
+
+      - @tradecomments.each do |tradecomment|
+        - if tradecomment.user_id == @buyer.id
+          .trade-buyer_comment
+            = tradecomment.comment
+          %span.trade-buyer_nickname
+            = @buyer.nickname
+        - elsif tradecomment.user_id == @seller.id
+          .trade-seller_comment
+            = tradecomment.comment
+          %span.trade-seller_nickname
+            = @seller.nickname
+      %p お困りの際は
+      %a よくある質問
+      %p をご確認ください
+
+
+
+= render partial: "layouts/main-footer"
