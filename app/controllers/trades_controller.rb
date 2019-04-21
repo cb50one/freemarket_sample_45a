@@ -4,7 +4,7 @@ class TradesController < ApplicationController
   def update
     Payjp.api_key = PAYJP_SECRET_KEY
     @item = Item.find_by(id: params[:item_id])
-    # @item.update(buyer_id: current_user.id)
+    @item.update(buyer_id: current_user.id)
     Payjp::Charge.create(currency: 'jpy', amount: @item.price, card: params['payjp-token'])
     @trade = Trade.where( [ "id = ? and item_id = ?", params[:id], @item ] )
     @trade.first.status = "取引完了"
