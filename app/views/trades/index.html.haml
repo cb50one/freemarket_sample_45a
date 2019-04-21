@@ -5,7 +5,7 @@
     %section
       %h3 取引情報
       .trade-container__info
-        %dl.trade-container__info_list
+        %dl.trade-container__info__list
           %dt 商品
           %dd #{@item.name}
           %dt 送料
@@ -30,18 +30,18 @@
         - @tradecomments.each do |tradecomment|
           - if tradecomment.user_id == @buyer.id
             %li.trade-buyer.clearfix
-              .trade-buyer_icon
+              .trade-buyer__icon
                 =image_tag("blank_icon.png", :size => "40x40")
-              .trade-buyer_comment
+              .trade-buyer__comment
                 = tradecomment.comment
-              .trade-buyer_nickname
+              .trade-buyer__nickname
                 = @buyer.nickname
           - elsif tradecomment.user_id == @seller.id
             %li.trade-seller.clearfix
-              .trade-seller_icon
-              .trade-seller_comment
+              .trade-seller__icon
+              .trade-seller__comment
                 = tradecomment.comment
-              .trade-seller_nickname
+              .trade-seller__nickname
                 = @seller.nickname
     .trade-container__content__messages
       %p.alert 取引メッセージの内容は、必要に応じて事務局で確認しています

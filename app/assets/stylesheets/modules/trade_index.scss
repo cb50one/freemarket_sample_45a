@@ -75,7 +75,7 @@
 
 .trade-buyer {
   position: relative;
-  &_icon {
+  &__icon {
     width: 40px;
     height: 40px;
     overflow: hidden;
@@ -84,7 +84,7 @@
     right: 0;
     top: -20px;
   }
-  &_comment {
+  &__comment {
     float: left;
     position: relative;
     width: calc(100% - 56px);
@@ -94,7 +94,7 @@
     line-height: 1.5;
     word-break: break-all;
   }
-	&_nickname {
+	&__nickname {
     width: 600px;
     overflow: hidden;
     position: absolute;
