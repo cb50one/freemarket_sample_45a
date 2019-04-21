@@ -1,8 +1,8 @@
 = render partial: "layouts/main-header"
 
 %main.trade-container.clearfix
-  .responsibe-bar
-    %sention
+  .responsive-bar
+    %section
       %h3 取引情報
       .trade-container__info
         %dl.trade-container__info_list
@@ -17,13 +17,13 @@
           %dt お届け先
           %dd
 
-    %sention.trade-container__figure
+    %section.trade-container__figure
       %h3 出品者情報
       %figure.trade-container__info.trade-figure
         %figcaption
           = @seller.nickname
 
-  %sention.trade-container__content
+  %section.trade-container__content
     %h2 取引画面
     .trade-container__content__messages
       %ul.trade-container__content__lists
@@ -48,7 +48,6 @@
       = form_for @tradecomment, url: item_trades_path do |f|
         = f.text_field :comment
         = f.submit "取引メッセージを送る", id: "tradecomment_submit"
-        %span 取引メッセージを送る
     .trade-container__content__messages
       %p ＊お困りの際は
       %a よくある質問
