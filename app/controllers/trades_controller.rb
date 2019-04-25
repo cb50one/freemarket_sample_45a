@@ -6,9 +6,9 @@ class TradesController < ApplicationController
     @item = Item.find_by(id: params[:item_id])
     @item.update(buyer_id: current_user.id)
     Payjp::Charge.create(currency: 'jpy', amount: @item.price, card: params['payjp-token'])
-    @trade = Trade.where( [ "id = ? and item_id = ?", params[:id], @item ] )
-    @trade.first.status = "取引完了"
-    @trade.first.save
+    @trade = Trade.find_by(item_id: @item)
+    @trade.status = "取引完了"
+    @trade.save
   end
 
   def index
